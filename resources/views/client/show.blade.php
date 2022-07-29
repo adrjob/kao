@@ -125,7 +125,24 @@
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif

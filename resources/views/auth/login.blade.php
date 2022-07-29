@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.app', ['class' => 'bg-dark'])
 
 @section('content')
     @include('layouts.headers.guest', ['infoLogin' => 1])
@@ -47,18 +47,18 @@
                                 </label>
                             </div>
                             <div class="text-center" id="login">
-                                <button type="submit" class="btn btn-primary my-4">{{ __('Sign in') }}</button>
+                                <button type="submit" class="btn btn-success my-4">{{ __('Sign in') }}</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-light">
-                                <small>{{ __('Forgot password?') }}</small>
-                            </a>
-                        @endif
+{{--                        @if (Route::has('password.request'))--}}
+{{--                            <a href="{{ route('password.request') }}" class="text-light">--}}
+{{--                                <small>{{ __('Forgot password?') }}</small>--}}
+{{--                            </a>--}}
+{{--                        @endif--}}
                     </div>
                 </div>
             </div>

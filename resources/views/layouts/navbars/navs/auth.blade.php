@@ -23,7 +23,7 @@
                         Settings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="{{ route('profile.edit') }}" class="dropdown-item">{{ __('Profile') }}</a>
+{{--                        <a href="{{ route('profile.edit') }}" class="dropdown-item">{{ __('Profile') }}</a>--}}
 
                         <a href="{{ route('user.index') }}" class="dropdown-item">{{ __('User Management') }}</a>
                     </div>
