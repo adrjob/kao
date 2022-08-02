@@ -6,13 +6,14 @@ use App\Models\Client;
 use App\Models\Documents;
 use App\Models\Images;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +24,7 @@ class ClientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -33,27 +34,43 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $data = new Client;
+
+        $data->name = $request->main;
+        $data->spouse = $request->spouse;
+        $data->child1 = $request->child1;
+        $data->child2 = $request->child2;
+        $data->child3 = $request->child3;
+        $data->child4 = $request->child4;
+        $data->child5 = $request->child5;
+        $data->child6 = $request->child6;
+        $data->sub_id = $request->sub_id;
+        $data->status = 0;
+
+        $data->save();
+
+        return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
 //        $documents = Documents::with('images')->get();
 
 
-        $documents = Documents::with(['images' => function ($query) {
-            $query->where('client_id', 'like', 1);
+        $documents = Documents::with(['images' => function ($query) use ($id) {
+            $query->where('client_id', 'like', $id);
         }])->get();
 
 
@@ -68,7 +85,7 @@ class ClientController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Client $client)
     {
@@ -78,20 +95,20 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Client $client)
     {
-        //
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Client $client)
     {

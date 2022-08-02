@@ -14,9 +14,9 @@
                     <a class="nav-link" href="{{ route('client.index') }}">Client</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Invoices</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">Invoices</a>--}}
+{{--                </li>--}}
                 @if($user->role_id == 1)
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

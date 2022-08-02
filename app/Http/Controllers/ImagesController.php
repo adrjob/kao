@@ -80,13 +80,40 @@ class ImagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Images  $images
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Images $images
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Images $images)
     {
-        //
+        if($request->file) {
+
+            $my_id = $request->my_id;
+            $data = Images::find($my_id);
+
+            $imageName = $request->type . "." . $request->file->getClientOriginalExtension();
+//        $request->file->storeAs('uploads/attachment', $imageName, ['disk' => 'public']);
+            $request->file->storeAs('uploads/client' . $request->client_id . '', $imageName, ['disk' => 'public']);
+
+            $data->name = $imageName;
+            $data->href = 0;
+            $data->type = $request->type;
+            $data->typeName = $request->type;
+            $data->client_id = $request->client_id;
+            $data->doc_id = $request->doc_id;
+            $data->status = 0;
+
+            $data->save();
+        }
+        else {
+            $my_id = $request->my_id;
+            $data = Images::find($my_id);
+            if ($request->status == 1) { $data->status = 1; } else { $data->status = 2; }
+            $data->save();
+        }
+
+
+        return redirect()->back();
     }
 
     /**

@@ -14,11 +14,81 @@
             </div>
 
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="#" class="btn btn-sm btn-neutral">{{ __('New') }}</a>
+                    <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral">{{ __('New') }}</a>
                 </div>
+
+
 
         </div>
     @endcomponent
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('client.store') }}" >
+                <div class="modal-body">
+                        @csrf
+
+                    @php
+                        use Illuminate\Support\Facades\Auth;
+
+            $user = \auth()->user();;
+                    @endphp
+
+                    <input type="hidden" name="sub_id" value="{{ $user->id }}">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Main" name="main">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Spouse" name="spouse">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Child 1" name="child1">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Child 2" name="child2">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Child 3" name="child3">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Child 4" name="child4">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Child 5" name="child5">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Child 6" name="child6">
+                            </div>
+                        </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Create</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid mt--6">
         <!-- Table -->

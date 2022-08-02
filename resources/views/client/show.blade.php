@@ -14,6 +14,12 @@
         </div>
     @endcomponent
 
+    @php
+        use Illuminate\Support\Facades\Auth;
+
+$user = \auth()->user();;
+    @endphp
+
     <div class="container-fluid mt--6">
         <!-- Table -->
         <div class="row">
@@ -67,6 +73,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="280">Action</th>
                                     </tr>
                                     </thead>
@@ -77,10 +84,49 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
-                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @else
                                                         <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                             @csrf
@@ -114,6 +160,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -124,6 +171,29 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
                                                     @if($document->images)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
@@ -160,6 +230,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -169,8 +240,48 @@
                                             <tr>
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif
@@ -188,6 +299,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -198,8 +310,48 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif
@@ -217,6 +369,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -227,8 +380,48 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif
@@ -246,6 +439,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -256,8 +450,48 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif
@@ -275,6 +509,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -285,8 +520,48 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif
@@ -297,13 +572,14 @@
                             @endif
 
                             <!-- Child6 -->
-                            @if($clients->child1)
+                            @if($clients->child6)
                             <div class="tab-pane fade" id="child6" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <table class="table table-flush" id="datatable-buttons8">
                                     <thead class="thead-light">
                                     <tr>
                                         <th>Name</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th class="text-right" width="90">Action</th>
                                     </tr>
                                     </thead>
@@ -314,8 +590,48 @@
 
                                                 <td>{{ $document->name }}</td>
                                                 <td>{{ $document->type }}</td>
+                                                <td>
+                                                    @if(!$document->images)
+                                                        {{ __('Please Upload Image') }}
+                                                    @elseif($document->images and $document->images['status'] == 0)
+                                                        @if($user->role_id == 1)
+                                                            <div class="row">
+                                                                <form method="post" action="{{ route('image.update', $document->images['id']) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                                    <button class="btn btn-sm btn-success" name="status" value="2" type="submit">Approve</button>
+                                                                    <button class="btn btn-sm btn-danger" name="status" value="1" type="submit">Decline</button>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            {{ __('Waiting Approval') }}
+                                                        @endif
+                                                    @elseif($document->images and $document->images['status'] == 1)
+                                                        <span style="color: red">{{ __('Declined') }}</span>
+                                                    @elseif($document->images and $document->images['status'] == 2)
+                                                        <span style="color: green">{{ __('Approved') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    @if($document->images)
+                                                        <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            @else
+                                                                <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
+                                                                    @csrf
+                                                                    <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                                    <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                                    <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                                    <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                        <div class="row text-right">
+                                                                            <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endif
