@@ -17,18 +17,18 @@
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" href="#">Invoices</a>--}}
 {{--                </li>--}}
-                @if($user->role_id == 1)
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Settings
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+{{--                @if($user->role_id == 1)--}}
+{{--                <li class="nav-item dropdown">--}}
+{{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                        Settings--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
 {{--                        <a href="{{ route('profile.edit') }}" class="dropdown-item">{{ __('Profile') }}</a>--}}
 
-                        <a href="{{ route('user.index') }}" class="dropdown-item">{{ __('User Management') }}</a>
-                    </div>
-                </li>
-                @endif
+{{--                        <a href="{{ route('user.index') }}" class="dropdown-item">{{ __('User Management') }}</a>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
+{{--                @endif--}}
             </ul>
             <ul class="navbar-nav align-items-right ml-auto" id="logout">
                 <li class="nav-item dropdown">
