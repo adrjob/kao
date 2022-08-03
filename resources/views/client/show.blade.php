@@ -198,10 +198,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -215,7 +231,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif
@@ -267,10 +287,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -284,7 +320,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif
@@ -337,10 +377,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -354,7 +410,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif
@@ -407,10 +467,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -424,7 +500,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif
@@ -477,10 +557,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -494,7 +590,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif
@@ -547,10 +647,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -564,7 +680,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif
@@ -617,10 +737,26 @@ $user = \auth()->user();;
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    @if($document->images)
+                                                    @if($document->images and $document->images['status'] == 1)
+                                                        <form action="{{ route('image.update', $document->images['id']) }}" id="myforms_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myforms">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="my_id" value="{{ $document->images['id'] }}">
+                                                            <input type="hidden" name="type" value="{{ $document->typeName }}">
+                                                            <input type="hidden" name="doc_id" value="{{ $document->id }}">
+                                                            <input type="hidden" name="client_id" value="{{ $clients->id }}">
+
+                                                            <div class="mb-12 text-right" style="margin-right: 20px">
+                                                                <div class="row text-right">
+                                                                    <input type="file" name="file" id="inputFile" class="form-control" style="width: 80%">
+                                                                    <button type="submit" class="btn btn-success btn-sm">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            @else
+                                                            @elseif(!$document->images)
                                                                 <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                                     @csrf
                                                                     <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -634,7 +770,11 @@ $user = \auth()->user();;
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                            @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endif

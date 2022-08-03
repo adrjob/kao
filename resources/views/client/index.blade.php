@@ -102,7 +102,7 @@
                             <thead class="thead-light">
                             <tr>
                                 <th>Name</th>
-                                <th>Status</th>
+{{--                                <th>Status</th>--}}
                                 <th>Created Date</th>
                                 <th>Action</th>
                             </tr>
@@ -114,13 +114,13 @@
                             @foreach($clients as $client)
                             <tr>
                                 <td>{{ $client->name }}</td>
-                                <td>
-                                    @if($client->status == 0)
-                                        {{ __('In Process') }}
-                                    @else
-                                        {{ __('Completed') }}
-                                    @endif
-                                </td>
+{{--                                <td>--}}
+{{--                                    @if($client->status == 0)--}}
+{{--                                        {{ __('In Process') }}--}}
+{{--                                    @else--}}
+{{--                                        {{ __('Completed') }}--}}
+{{--                                    @endif--}}
+{{--                                </td>--}}
                                 <td>{{ $client->created_at }}</td>
                                 <td>
                                     <a href="{{ route('client.show', $client->id) }}">
