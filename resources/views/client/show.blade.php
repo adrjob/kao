@@ -127,7 +127,7 @@ $user = \auth()->user();;
                                                     @elseif ($document->images and $document->images['status'] == 2)
                                                         <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
-                                                    @else
+                                                    @elseif(!$document->images)
                                                         <form action="{{ route('image.store') }}" id="myform_{{ $document->id }}" method="POST" enctype="multipart/form-data" class="myform">
                                                             @csrf
                                                             <input type="hidden" name="type" value="{{ $document->typeName }}">
@@ -141,6 +141,9 @@ $user = \auth()->user();;
                                                                 </div>
                                                             </div>
                                                         </form>
+                                                    @else
+                                                                <a href="{{ url('/uploads/client' . $clients->id . '/'. $document->images['name']  ) }}" target="_blank">
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                     @endif
 
                                                 </td>
