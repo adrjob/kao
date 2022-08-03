@@ -38,7 +38,7 @@ class ImagesController extends Controller
 
         $data = new Images;
 
-        $imageName = $request->type . "." . $request->file->getClientOriginalExtension();
+        $imageName = $request->type . '_' . rand(1,999) .  "." . $request->file->getClientOriginalExtension();
 //        $request->file->storeAs('uploads/attachment', $imageName, ['disk' => 'public']);
         $request->file->storeAs('uploads/client' . $request->client_id . '', $imageName, ['disk' => 'public']);
 
@@ -91,7 +91,7 @@ class ImagesController extends Controller
             $my_id = $request->my_id;
             $data = Images::find($my_id);
 
-            $imageName = $request->type . "." . $request->file->getClientOriginalExtension();
+            $imageName = $request->type . '_' . rand(1,999) .  "." . $request->file->getClientOriginalExtension();
 //        $request->file->storeAs('uploads/attachment', $imageName, ['disk' => 'public']);
             $request->file->storeAs('uploads/client' . $request->client_id . '', $imageName, ['disk' => 'public']);
 
