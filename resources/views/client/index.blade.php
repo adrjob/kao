@@ -14,7 +14,7 @@
             </div>
 
                 <div class="col-lg-6 col-5 text-right">
-                    <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral">{{ __('New') }}</a>
+                    <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral" style="background-color: #4cb04f !important; border: #4cb04f !important; color: white !important;">{{ __('New') }}</a>
                 </div>
 
 
@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <div class="container-fluid mt--6">
+    <div class="container-fluid mt--6" >
         <!-- Table -->
         <div class="row">
             <div class="col">

@@ -30,34 +30,49 @@ $user = \auth()->user();;
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#main" role="tab" aria-controls="nav-home" aria-selected="true">{{ __('Main') }}</a>
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#main" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    @if($clients->name){{ $clients->name }}@endif
+                                </a>
 
                                 @if($clients->spouse)
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#spouse" role="tab" aria-controls="nav-profile" aria-selected="false">{{ __('Spouse') }}</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#spouse" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                    @if($clients->spouse){{ $clients->spouse }}@endif</a>
                                 @endif
 
                                 @if($clients->child1)
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child1" role="tab" aria-controls="nav-contact" aria-selected="false">{{ __('Child 1') }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child1" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    @if($clients->child1){{ $clients->child1 }}@endif
+                                </a>
                                 @endif
 
                                 @if($clients->child2)
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child2" role="tab" aria-controls="nav-contact" aria-selected="false">{{ __('Child 2') }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child2" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    @if($clients->child2){{ $clients->child2 }}@endif
+                                </a>
                                 @endif
 
                                 @if($clients->child3)
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child3" role="tab" aria-controls="nav-contact" aria-selected="false">{{ __('Child 3') }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child3" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    @if($clients->child3){{ $clients->child3 }}@endif
+                                </a>
                                 @endif
 
                                 @if($clients->child4)
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child4" role="tab" aria-controls="nav-contact" aria-selected="false">{{ __('Child 4') }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child4" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    @if($clients->child4){{ $clients->child4 }}@endif
+                                </a>
                                 @endif
 
                                 @if($clients->child5)
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child5" role="tab" aria-controls="nav-contact" aria-selected="false">{{ __('Child 5') }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child5" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    @if($clients->child5){{ $clients->child5 }}@endif
+                                </a>
                                 @endif
 
                                 @if($clients->child6)
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child6" role="tab" aria-controls="nav-contact" aria-selected="false">{{ __('Child 6') }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#child6" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    @if($clients->child6){{ $clients->child6 }}@endif
+                                </a>
                                 @endif
                             </div>
                         </nav>

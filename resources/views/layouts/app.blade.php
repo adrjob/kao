@@ -26,6 +26,9 @@
                 .bg-primary {
                     background-color: black !important;
                 }
+                .text-muted {
+                    color: #fff3cd!important;!important;!important;
+                }
             </style>
             <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
             h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
@@ -121,7 +124,7 @@
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('css') }}/argon.css?v=2.2.0" rel="stylesheet">
     </head>
-    <body class="{{ $class ?? '' }}">
+    <body class="{{ $class ?? '' }} pb-0"  style="background-color: black !important;">
         @if (config('app.is_demo'))
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
@@ -142,10 +145,10 @@
             @yield('content')
         </div>
 
-        @if(!auth()->check() || in_array(request()->route()->getName(), ['welcome', 'page.pricing', 'page.lock']))
-            @include('layouts.footers.guest')
-        @endif
-
+        <footer class="footer pt-0 pb-0 text-center" style="background-color: black;
+   bottom:0; width: 100%">
+            @include('layouts.footers.nav')
+        </footer>
         {{-- <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script> --}}
         {{-- <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> --}}
         {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
