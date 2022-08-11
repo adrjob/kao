@@ -15,11 +15,11 @@ Route::get('/', 'Auth\LoginController@showLoginForm')->name('welcome');
 
 Auth::routes();
 
-Route::get('dashboard', 'ClientController@index')->name('home');
 Route::get('pricing', 'PageController@pricing')->name('page.pricing');
 Route::get('lock', 'PageController@lock')->name('page.lock');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('dashboard', 'ClientController@index')->name('home');
     Route::resource('category', 'CategoryController', ['except' => ['show']]);
     Route::resource('tag', 'TagController', ['except' => ['show']]);
     Route::resource('item', 'ItemController', ['except' => ['show']]);

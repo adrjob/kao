@@ -17,6 +17,8 @@
 */
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+
 class HomeController extends Controller
 {
     /**
@@ -36,6 +38,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+        $clients = Client::all();
+        return view("client.index", compact('clients'));
     }
 }
