@@ -20,7 +20,7 @@
 $user = \auth()->user();;
     @endphp
 
-    <div class="container-fluid mt--6">
+    <div class="container-fluid mt-4">
         <!-- Table -->
         <div class="row">
             <div class="col">
