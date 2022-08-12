@@ -21,6 +21,11 @@ $user = \auth()->user();;
     @endphp
 
     <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>{{ $clients->name }}</h1>
+            </div>
+        </div>
         <!-- Table -->
         <div class="row">
             <div class="col">
