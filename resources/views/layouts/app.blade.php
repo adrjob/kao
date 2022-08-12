@@ -131,7 +131,7 @@
             {{--background-size: cover;--}}
         }
     </style>
-    <body class="{{ $class ?? '' }} pb-0 body-vuv"  style="background-color: whitesmoke">
+    <body class="{{ $class ?? '' }} pb-0 body-vuv"  style="background-color: whitesmoke !important;">
         @if (config('app.is_demo'))
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
