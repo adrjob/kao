@@ -841,49 +841,56 @@ $user = \auth()->user();;
     <script>
         $(document).ready( function() {
             $('#datatable-buttons2').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
     <script>
         $(document).ready( function() {
             $('#datatable-buttons3').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
     <script>
         $(document).ready( function() {
             $('#datatable-buttons4').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
     <script>
         $(document).ready( function() {
             $('#datatable-buttons5').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
     <script>
         $(document).ready( function() {
             $('#datatable-buttons6').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
     <script>
         $(document).ready( function() {
             $('#datatable-buttons7').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
     <script>
         $(document).ready( function() {
             $('#datatable-buttons8').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
