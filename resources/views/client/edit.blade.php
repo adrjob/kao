@@ -13,9 +13,9 @@
                 </nav>
             </div>
 
-                <div class="col-lg-6 col-5 text-right">
-                    <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral" style="background-color: #4cb04f !important; border: #4cb04f !important; color: white !important;">{{ __('New') }}</a>
-                </div>
+            <div class="col-lg-6 col-5 text-right">
+                <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral" style="background-color: #4cb04f !important; border: #4cb04f !important; color: white !important;">{{ __('New') }}</a>
+            </div>
 
 
 
@@ -33,17 +33,17 @@
                     </button>
                 </div>
                 <form method="POST" action="{{ route('client.store') }}" >
-                <div class="modal-body">
+                    <div class="modal-body">
                         @csrf
 
-                    @php
-                        use Illuminate\Support\Facades\Auth;
+                        @php
+                            use Illuminate\Support\Facades\Auth;
 
-            $user = \auth()->user();;
-                    @endphp
+                $user = \auth()->user();;
+                        @endphp
 
-                    <input type="hidden" name="sub_id" value="{{ $user->id }}">
-                    <input type="hidden" name="code" value="0">
+                        <input type="hidden" name="sub_id" value="{{ $user->id }}">
+                        <input type="hidden" name="code" value="1">
                         <div class="form-row">
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Main" name="main">
@@ -81,11 +81,11 @@
                         </div>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success" style="background-color: #4cb04f !important;">Create</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -94,7 +94,7 @@
     <div class="container-fluid mt-4" >
         <div class="row">
             <div class="col-md-6">
-                <h1>Client</h1>
+                <h1>Old Client</h1>
             </div>
 
             <div class="col-md-6 text-right">
@@ -112,7 +112,7 @@
                             <thead class="thead-light">
                             <tr>
                                 <th>Name</th>
-{{--                                <th>Status</th>--}}
+                                {{--                                <th>Status</th>--}}
                                 <th>Created Date</th>
                                 <th>Action</th>
                             </tr>
@@ -122,22 +122,22 @@
                             </tfoot>
                             <tbody>
                             @foreach($clients as $client)
-                            <tr>
-                                <td>{{ $client->name }}</td>
-{{--                                <td>--}}
-{{--                                    @if($client->status == 0)--}}
-{{--                                        {{ __('In Process') }}--}}
-{{--                                    @else--}}
-{{--                                        {{ __('Completed') }}--}}
-{{--                                    @endif--}}
-{{--                                </td>--}}
-                                <td>{{ $client->created_at }}</td>
-                                <td>
-                                    <a href="{{ route('client.show', $client->id) }}">
-                                    <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $client->name }}</td>
+                                    {{--                                <td>--}}
+                                    {{--                                    @if($client->status == 0)--}}
+                                    {{--                                        {{ __('In Process') }}--}}
+                                    {{--                                    @else--}}
+                                    {{--                                        {{ __('Completed') }}--}}
+                                    {{--                                    @endif--}}
+                                    {{--                                </td>--}}
+                                    <td>{{ $client->created_at }}</td>
+                                    <td>
+                                        <a href="{{ route('client.show', $client->id) }}">
+                                            <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

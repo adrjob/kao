@@ -17,7 +17,13 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::where('code', 0)->get();
+        return view("client.index", compact('clients'));
+    }
+
+    public function index2()
+    {
+        $clients = Client::where('code', 1)->get();
         return view("client.index", compact('clients'));
     }
 
@@ -51,6 +57,7 @@ class ClientController extends Controller
         $data->child6 = $request->child6;
         $data->sub_id = $request->sub_id;
         $data->status = 0;
+        $data->code = $request->code;
 
         $data->save();
 
@@ -89,7 +96,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $clients = Client::where('code', 1)->get();
+        return view("client.edit", compact('clients'));
     }
 
     /**

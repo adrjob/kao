@@ -124,7 +124,14 @@
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('css') }}/argon.css?v=2.2.0" rel="stylesheet">
     </head>
-    <body class="{{ $class ?? '' }} pb-0"  style="background-color: black !important;">
+    <style>
+        .body-vuv {
+            {{--background-image: url("{{ asset('argon') }}/img/vanuatu-flag.png");--}}
+            {{--background-repeat: no-repeat;--}}
+            {{--background-size: cover;--}}
+        }
+    </style>
+    <body class="{{ $class ?? '' }} pb-0 body-vuv"  style="background-color: whitesmoke">
         @if (config('app.is_demo'))
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
@@ -145,7 +152,7 @@
             @yield('content')
         </div>
 
-        <footer class="footer pt-0 pb-0 text-center" style="background-color: black;
+        <footer class="footer pt-0 pb-0 text-center" style="background-color: whitesmoke;
    bottom:0; width: 100%">
             @include('layouts.footers.nav')
         </footer>
