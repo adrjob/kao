@@ -20,6 +20,20 @@
 $user = \auth()->user();;
     @endphp
 
+    <style>
+        .fa-eye {
+            color: #4cb04f !important;
+        }
+        .btn-success {
+            background-color: #4cb04f !important;
+            border: #4cb04f !important;
+        }
+        .btn-danger {
+            background-color: red !important;
+            border: red !important;
+        }
+    </style>
+
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-md-6">
