@@ -833,7 +833,8 @@ $user = \auth()->user();;
     <script>
         $(document).ready( function() {
             $('#datatable-buttons1').dataTable( {
-                "aaSorting": []
+                "aaSorting": [],
+                "bPaginate": false
             } );
         } );
     </script>
