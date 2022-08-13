@@ -27,11 +27,11 @@
                     }
                 </style>
                 <li class="nav-item">
-                    <a class="nav-link mnav" href="{{ route('client.index') }}">Client</a>
+                    <a class="nav-link mnav" href="{{ route('client.index') }}">New Clients</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link mnav" href="{{ route('client.edit', 1) }}">Old Client</a>
+                    <a class="nav-link mnav" href="{{ route('client.edit', 1) }}">Old Clients</a>
                 </li>
 
 {{--                <li class="nav-item">--}}
